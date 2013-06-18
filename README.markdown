@@ -18,8 +18,8 @@ To enable multiple file upload for this section, create a `Mapper` for this sect
 
 A `Mapper` is a PHP Class located in `/extensions/multiple_uploads/lib/upload/`.
 
-Mapper filename: class.<<SECTION_HANDLE>>uploadhandler.php
-Mapper class name: <<SECTION_NAME>>UploadHandler
+Mapper filename: class.`SECTION_HANDLE`uploadhandler.php
+Mapper class name: `SECTION_NAME`UploadHandler
 
 Example for `Images` section:
 
