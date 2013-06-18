@@ -1,0 +1,69 @@
+@charset "UTF-8";
+/*
+ * jQuery File Upload Plugin CSS Example 1.0.1
+ * https://github.com/blueimp/jQuery-File-Upload
+ *
+ * Copyright 2012, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+
+.container {
+	margin: 0;
+}
+
+.delete, .toggle {
+	display: none;
+}
+
+h1 {
+	font-size: 1.2em;
+	font-weight: normal;
+}
+
+.btn.pull-right {
+	float: right;
+}
+
+blockquote {
+	color: #ccc;
+	border: 2px dashed #eee;
+	padding: 20px 0;
+}
+
+blockquote p {
+	text-align: center;
+}
+
+blockquote .icon {
+	font-size: 2.0em;
+}
+
+.files .template-upload:nth-child(odd) .progress {
+	background-color: #f5f5f5;
+	background-image: -moz-linear-gradient(top, #f0f0f0, #f5f5f5);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f0f0f0), to(#f5f5f5));
+	background-image: -webkit-linear-gradient(top, #f0f0f0, #f5f5f5);
+	background-image: -o-linear-gradient(top, #f0f0f0, #f5f5f5);
+	background-image: linear-gradient(to bottom, #f0f0f0, #f5f5f5);
+	background-repeat: repeat-x;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	filter: progid:dximagetransform.microsoft.gradient(startColorstr='#fff0f0f0', endColorstr='#fff5f5f5', GradientType=0);
+}
+
+.template-upload td.start,
+.template-upload td.cancel {
+	text-align: right;
+}
+
+.table {
+	margin-bottom: 0;
+}
+
+form {
+	margin-bottom: 0;
+}

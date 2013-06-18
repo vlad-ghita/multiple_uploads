@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<extension id="multiple_uploads" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
+
+	<name>Multiple uploads</name>
+
+	<description>Multiple file uploads straight in Sections.</description>
+
+	<repo type="github">https://github.com/vlad-ghita/multiple_uploads</repo>
+
+	<types>
+		<type>Interface</type>
+	</types>
+
+	<authors>
+		<author>
+			<name github="vlad-ghita" symphony="vladG">Vlad Ghita</name>
+			<email>vlad.github@gmail.com</email>
+			<website>http://www.xanderadvertising.com</website>
+		</author>
+	</authors>
+
+	<releases>
+		<release version="1.0.0" date="2013-06-18" min="2.3"><![CDATA[
+			* First release.
+		]]></release>
+	</releases>
+
+</extension>
