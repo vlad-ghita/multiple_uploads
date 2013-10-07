@@ -16,7 +16,7 @@
 
 	if( !isset($_REQUEST['class-name']) ) exit;
 	$class_name = $_REQUEST['class-name'];
-	$class_file = "class.$class_name.php";
+	$class_file = strtolower("class.$class_name.php");
 	if( !file_exists( $class_file ) ){
 		echo "Class file `$class_file` doesn't exist.";
 		exit;

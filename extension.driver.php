@@ -129,8 +129,8 @@
 
 		public static function className($handle){
 			$class_name = explode( '-', $handle );
-			$class_name = array_map( 'ucfirst', $class_name );
 			$class_name = implode( '', $class_name );
+			$class_name = strtolower($class_name);
 			$class_name = "{$class_name}uploadhandler";
 
 			return $class_name;

@@ -49,7 +49,7 @@
 			if( !is_array( $s_fields ) ) return;
 
 			$fields = array();
-			foreach( $s_fields as $f ){
+			foreach($s_fields as $f){
 				/** @var $f Field */
 				if( in_array( $f->get( 'type' ), $this->field_types ) ){
 					$fields[] = array(
@@ -73,7 +73,7 @@
 		public function commit(){
 			if( !parent::commit() ) return false;
 
-			$id = $this->get( 'id' );
+			$id     = $this->get( 'id' );
 			$handle = $this->handle();
 
 			if( $id === false ) return false;
@@ -81,7 +81,7 @@
 			$fields['field_id'] = $id;
 
 			$related_field_id = $this->get( 'related_field_id' );
-			if( !is_array($related_field_id) ) $related_field_id = array($related_field_id);
+			if( !is_array( $related_field_id ) ) $related_field_id = array($related_field_id);
 			$fields['related_field_id'] = empty($related_field_id) ? '' : implode( ',', $related_field_id );
 
 			Symphony::Database()->query( "DELETE FROM `tbl_fields_{$handle}` WHERE `field_id` = '{$id}' LIMIT 1" );
@@ -98,50 +98,44 @@
 		public function displayPublishPanel(XMLElement &$wrapper, $data = null, $flagWithError = null, $prefix = null, $postfix = null){
 			$callback = Administration::instance()->getPageCallback();
 
-			// display field only on edit pages
-			if( $callback['context']['page'] !== 'edit' ){
-				$wrapper->setAttribute( 'class', '' );
-			}
-			else{
-				$sblp_id = $this->get( 'related_field_id' );
-				$sblp_f = FieldManager::fetch( $sblp_id );
-				if( is_array( $sblp_f ) ) $sblp_f = current( $sblp_f );
+			$sblp_id = $this->get( 'related_field_id' );
+			$sblp_f  = FieldManager::fetch( $sblp_id );
+			if( is_array( $sblp_f ) ) $sblp_f = current( $sblp_f );
 
-				$rel_id = $sblp_f->get( 'related_field_id' );
-				$rel_id = $rel_id[0];
-				$rel_field = FieldManager::fetch( $rel_id );
-				if( is_array( $rel_field ) ) $rel_field = current( $rel_field );
+			$rel_id    = $sblp_f->get( 'related_field_id' );
+			$rel_id    = $rel_id[0];
+			$rel_field = FieldManager::fetch( $rel_id );
+			if( is_array( $rel_field ) ) $rel_field = current( $rel_field );
 
-				$rel_section = SectionManager::fetch( $rel_field->get( 'parent_section' ) );
+			$rel_section = SectionManager::fetch( $rel_field->get( 'parent_section' ) );
 
-				$script = new XMLElement('script', null, array('type' => 'text/javascript'));
-				$script->setValue( sprintf( "
+			$script = new XMLElement('script', null, array('type' => 'text/javascript'));
+			$script->setValue( sprintf( "
 					Symphony.Multiple_Uploads = Symphony.Multiple_Uploads || {};
 					Symphony.Multiple_Uploads['field-%s'] = {
 						'class_name': '%s',
 						'view': 'sblp-view-%s',
 						'entry_id': '%s'
 					};",
-					$this->get( 'id' ),
-					Extension_Multiple_Uploads::className( $rel_section->get( 'handle' ) ),
-					$sblp_id,
-					$callback['context']['entry_id']
-				) );
-				$script->setSelfClosingTag( false );
-				Administration::instance()->Page->addElementToHead( $script );
+				$this->get( 'id' ),
+				Extension_Multiple_Uploads::className( $rel_section->get( 'handle' ) ),
+				$sblp_id,
+				$callback['context']['entry_id']
+			) );
+			$script->setSelfClosingTag( false );
+			Administration::instance()->Page->addElementToHead( $script );
 
-				Extension_Multiple_Uploads::appendAssets( 'single' );
+			Extension_Multiple_Uploads::appendAssets( 'single' );
 
-				$label = Widget::Label( $this->get( 'label' ) );
-				$wrapper->appendChild( $label );
+			$label = Widget::Label( $this->get( 'label' ) );
+			$wrapper->appendChild( $label );
 
-				// iframe
-				$iframe = new XMLElement('iframe');
-				$iframe->setAttribute( 'src', URL.'/extensions/multiple_uploads/lib/publish_single/?id=field-'.$this->get( 'id' ) );
-				$iframe->setAttribute( 'id', 'multiple-uploads-iframe-field-'.$this->get( 'id' ) );
+			// iframe
+			$iframe = new XMLElement('iframe');
+			$iframe->setAttribute( 'src', URL.'/extensions/multiple_uploads/lib/publish_single/?id=field-'.$this->get( 'id' ) );
+			$iframe->setAttribute( 'id', 'multiple-uploads-iframe-field-'.$this->get( 'id' ) );
 
-				$wrapper->appendChild( $iframe );
-			}
+			$wrapper->appendChild( $iframe );
 		}
 
 
